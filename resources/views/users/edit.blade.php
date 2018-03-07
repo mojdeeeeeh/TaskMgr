@@ -26,7 +26,7 @@
                 <input type="text"
                 	class="form-control"
                 	v-model="user.email"
-                	required autofocus />
+                	required />
             </div>
         </div>
        

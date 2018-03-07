@@ -3,9 +3,27 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Http\Requests\UserRequest;
+
+use App\User;
+use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Validator;
+use Illuminate\Foundation\Auth\RegistersUsers;
 
 class UsersController extends Controller
 {
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function tIndex(Request $request)
+    {
+        $users = \App\User::all();
+        return view('users.tIndex', compact('users'));
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -30,7 +48,7 @@ class UsersController extends Controller
      */
     public function create()
     {
-        //
+        // 
     }
 
     /**
@@ -39,9 +57,14 @@ class UsersController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(UserRequest $request)
     {
-        //
+        return User::create([
+            'name' => $request->name,
+            'email' => $request->email,
+            'password' => Hash::make($request->password),
+        ]);
+
     }
 
     /**
@@ -89,8 +112,10 @@ class UsersController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Request $request, \App\User $user)
     {
-        //
+        $result = $user->delete();
+
+        return ['status' => $result];
     }
 }
