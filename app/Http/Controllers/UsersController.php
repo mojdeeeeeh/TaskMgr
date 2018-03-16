@@ -21,8 +21,15 @@ class UsersController extends Controller
     public function tIndex(Request $request)
     {
         $users = \App\User::all();
+
+        if ($request->ajax())
+        {
+            return $users;
+        }
+
         return view('users.tIndex', compact('users'));
     }
+
 
     /**
      * Display a listing of the resource.

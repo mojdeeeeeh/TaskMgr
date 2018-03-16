@@ -159,6 +159,8 @@ return [
         // App\Providers\BroadcastServiceProvider::class,
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
+        Morilog\Jalali\JalaliServiceProvider::class,
+        Hekmatinasser\Verta\VertaServiceProvider::class,
 
     ],
 
@@ -208,6 +210,9 @@ return [
         'URL' => Illuminate\Support\Facades\URL::class,
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
+        'jDateTime' => Morilog\Jalali\Facades\jDateTime::class,
+        'jDate' => Morilog\Jalali\Facades\jDate::class,
+        'Verta' => Hekmatinasser\Verta\Verta::class,
 
     ],
 
