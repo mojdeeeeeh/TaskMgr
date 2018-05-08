@@ -17,6 +17,9 @@
                     <div>
                         <a href="{{ route('users.index') }}">Users Page</a>
                     </div>
+                    <div>
+                        <a href="{{ route('tasks.index') }}">Tasks Page</a>
+                    </div>
 
                     You are logged in!
                 </div>

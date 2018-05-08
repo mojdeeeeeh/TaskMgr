@@ -36659,6 +36659,41 @@ module.exports = g;
 
 /***/ }),
 
+/***/ "./resources/assets/js/CKEditorHelper.js":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+var CKEditorHelper = {
+    /**
+     * Prepare
+     *
+     * @param      {<type>}  id      The identifier
+     */
+    prepare: function prepare(id, extraConfig) {
+        return new Promise(function (resolve, reject) {
+            var config = {
+                font_names: 'Arial;Times New Roman;Verdana;B Yekan',
+                language: 'en',
+
+                default: function _default() {
+                    return [{ name: 'document', items: ['Source', '-', 'Save', 'NewPage', 'Preview', 'Print', '-', 'Templates'] }, { name: 'clipboard', items: ['Cut', 'Copy', 'Paste', 'PasteText', 'PasteFromWord', '-', 'Undo', 'Redo'] }, { name: 'editing', items: ['Find', 'Replace', '-', 'SelectAll', '-', 'Scayt'] }, { name: 'forms', items: ['Form', 'Checkbox', 'Radio', 'TextField', 'Textarea', 'Select', 'Button', 'ImageButton', 'HiddenField'] }, '/', { name: 'basicstyles', items: ['Bold', 'Italic', 'Underline', 'Strike', 'Subscript', 'Superscript', '-', 'CopyFormatting', 'RemoveFormat'] }, { name: 'paragraph', items: ['NumberedList', 'BulletedList', '-', 'Outdent', 'Indent', '-', 'Blockquote', 'CreateDiv', '-', 'JustifyLeft', 'JustifyCenter', 'JustifyRight', 'JustifyBlock', '-', 'BidiLtr', 'BidiRtl', 'Language'] }, { name: 'links', items: ['Link', 'Unlink', 'Anchor'] }, { name: 'insert', items: ['Image', 'Flash', 'Table', 'HorizontalRule', 'Smiley', 'SpecialChar', 'PageBreak', 'Iframe'] }, '/', { name: 'styles', items: ['Styles', 'Format', 'Font', 'FontSize'] }, { name: 'colors', items: ['TextColor', 'BGColor'] }, { name: 'tools', items: ['Maximize', 'ShowBlocks'] }, { name: 'about', items: ['About'] }];
+                }
+            };
+
+            Object.assign(config, extraConfig);
+
+            var a = CKEDITOR.replace(id, config);
+
+            resolve(a);
+        });
+    }
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (CKEditorHelper);
+
+/***/ }),
+
 /***/ "./resources/assets/js/app.js":
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -36671,6 +36706,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_jquery__ = __webpack_require__("./node_modules/jquery/dist/jquery.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_jquery___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_jquery__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_vee_validate__ = __webpack_require__("./node_modules/vee-validate/dist/vee-validate.esm.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__CKEditorHelper__ = __webpack_require__("./resources/assets/js/CKEditorHelper.js");
+
 
 
 
@@ -36680,6 +36717,7 @@ window.Vue = __WEBPACK_IMPORTED_MODULE_1_vue___default.a;
 window.VeeValidate = __WEBPACK_IMPORTED_MODULE_3_vee_validate__["a" /* default */];
 window.Axios = __WEBPACK_IMPORTED_MODULE_0_axios___default.a;
 window.Axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
+window.CKEditorHelper = __WEBPACK_IMPORTED_MODULE_4__CKEditorHelper__["default"];
 
 var token = document.head.querySelector('meta[name="csrf-token"]');
 

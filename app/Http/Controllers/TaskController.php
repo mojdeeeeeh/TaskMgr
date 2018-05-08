@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Task;
 use App\User;
 use Illuminate\Http\Request;
+use App\Http\Requests\TaskRequest;
 use Verta;
 
 class TaskController extends Controller
@@ -50,13 +51,29 @@ class TaskController extends Controller
      */
     public function store(TaskRequest $request)
     {
-        return Task::create([
+        // $startDateE = $request->start;
+        $v = Verta::parse($request->persianStartDate);
+        $start = $v->formatGregorian('Y-m-d H:i:s');
+
+        $f = Verta::parse($request->persianFinishDate);
+        $finish = $f->formatGregorian('Y-m-d H:i:s');
+
+        $data = [
             'title' => $request->title,
             'body' => $request->body,
-            'start' => $request->start,
-            'finish' => $request->finish,
+            'start' => $start,
+            'finish' => $finish,
             'weight' => $request->weight,
-        ]);
+            'sender_user_id' => \Auth::user()->id,
+            'functor_user_id' => $request->functor_user_id,
+            'seconder_user_id' => $request->seconder_user_id,
+            'task_status_id' => $request->task_status_id,
+            'task_status_id' => 1,
+        ];
+
+        $result = Task::create($data);
+
+        return $result;
     }
 
     /**
@@ -90,14 +107,7 @@ class TaskController extends Controller
      */
     public function update(Request $request, Task $task)
     {
-        // $sender_user = \Auth::user();
-
-        // $usersData = [];
-        // foreach ($users as $user)
-        // {
-        //     $user = \App\User::all()->except(Auth::id());
-        //     $usersData[] = $user->id;
-        // }
+        
         $task->update([
             'title' => $request->title,
             'body' => $request->body,
@@ -105,6 +115,8 @@ class TaskController extends Controller
             'finish' => $request->finish,
             'weight' => $request->weight,
             'functor_user_id' => $request->functor_user_id,
+            'seconder_user_id' => $request->seconder_user_id,
+            'task_status_id' => $request->task_status_id,
         ]);
        
 

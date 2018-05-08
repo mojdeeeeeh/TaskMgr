@@ -1,67 +1,120 @@
 <div class="card">
     <div class="card-header">
-        Modify Task
+        Create Task
     </div>
 
     <div class="card-body">
         <div class="form-group row" >
-            <label for="name" class="col-md-4 col-form-label text-md-right">
+            <label for="name" class="col-md-2 col-form-label text-md-right">
             	Title
             </label>
 
-            <div class="col-md-6">
-                <input type="text"
-                	class="form-control"
-                	v-model="task.title"
-                	required autofocus />
+            <div class="col-md-8">
+                <input type="text" class="form-control" data-vv-delay="1000"
+                    :class="{'input': true, 'is-danger': errors.has('title') }"
+                    v-validate="'required|min:3|max:15'" name="title"
+                    v-model="task.title"  autofocus />
             </div>
         </div>
 
         <div class="form-group row" >
-            <label for="name" class="col-md-4 col-form-label text-md-right">
-            	Body
-            </label>
+            
 
-            <div class="col-md-6">
+                    <!--  <section class="content">
+                      <div class="row">
+                        <div class="col-md-12">
+                          <div class="box box-info">
+                            <div class="box-header">
+                              <h3 class="box-title">type...</h3> -->
+                              <!-- tools box -->
+                              <!-- <div class="pull-right box-tools">
+                                 <button type="button" class="btn btn-info btn-sm" data-widget="collapse" data-toggle="tooltip" title="Collapse">
+                                 <i class="fa fa-minus"></i></button>
+                              </div> -->
+                              <!-- /. tools -->
+                           <!--  </div> -->
+                          <!-- /.box-header -->
+                           <!--  <div class="form-group{{ $errors->has('body') ? "has-error" : "" }}" style="padding: 10px">
+                              <label for="bodyTextArea">body</label>
+                                <div>
+                                  <textarea id="bodyTextArea" name="body" class="ckeditor">{!! old('body', '') !!}</textarea>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </section>  -->
+                      <section class="content">
+              <div class="row">
+                <label for="name" class="col-md-2 col-form-label text-md-right">
+                    Body
+                </label>
+                <div class="col-md-8 ">
+                  <div class="box box-info">
+                    <div class="box-header">
+                      
+                      <!-- tools box -->
+                      <div class="pull-right box-tools">
+                        
+                      </div>
+                      <!-- /. tools -->
+                    </div>
+                    <!-- /.box-header -->
+                    <div  class="form-group{{ $errors->has('body') ? "has-error" : "" }}" style="padding: 10px">
+                      
+                        <div>
+                           <textarea id="bodyTextArea" name="body" class="ckeditor" v-model="task.body" required>
+                               @{{ task.body }}
+                           </textarea>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+            </section>
+ 
+            <!-- <div class="col-md-8">
                 <input type="text"
                 	class="form-control"
-                	v-model="task.body"
-                	required />
-            </div>
+                	v-model="task.body" 
+                    name="body"/>
+            </div> -->
         </div>
 
         <div class="form-group row" >
-            <label for="name" class="col-md-4 col-form-label text-md-right">
+            <label for="name" class="col-md-2 col-form-label text-md-right">
                 Start
             </label>
 
-            <div class="col-md-6">
-                <input type="text"
+            <div class="col-md-8">
+                <input type="text" id="input3"
                     class="form-control"
                     v-model="task.persianStartDate"
-                    required />
+                    name="start" />
+                    <span id="span3"></span>
             </div>
         </div>
 
         <div class="form-group row" >
-            <label for="name" class="col-md-4 col-form-label text-md-right">
+            <label for="name" class="col-md-2 col-form-label text-md-right">
                 Finish
             </label>
 
-            <div class="col-md-6">
-                <input type="text"
+            <div class="col-md-8">
+                <input type="text" id="input4"
                     class="form-control"
-                    v-model="task.persianFinishDate"
-                    required />
+                    v-model="task.persianFinishDate" 
+                    name="finish" />
+                    <span id="span4"></span>
             </div>
         </div>
 
         <div class="form-group row" >
-            <label for="name" class="col-md-4 col-form-label text-md-right">
+            <label for="name" class="col-md-2 col-form-label text-md-right">
                 Sender user
             </label>
 
-            <div class="col-md-6">
+            <div class="col-md-8">
                 <select v-model="task.sender_user_id">
                     <option v-for="user in users" :value="user.id">
                         @{{ user.name }}
@@ -71,11 +124,11 @@
         </div>
 
         <div class="form-group row" >
-            <label for="name" class="col-md-4 col-form-label text-md-right">
+            <label for="name" class="col-md-2 col-form-label text-md-right">
                 Functor user
             </label>
 
-            <div class="col-md-6">
+            <div class="col-md-8">
                 <select v-model="task.functor_user_id">
                     <option v-for="user in users" :value="user.id">
                         @{{ user.name }}
@@ -85,11 +138,11 @@
         </div>
 
          <div class="form-group row" >
-            <label for="name" class="col-md-4 col-form-label text-md-right">
+            <label for="name" class="col-md-2 col-form-label text-md-right">
                 Seconder user
             </label>
 
-            <div class="col-md-6">
+            <div class="col-md-8">
                 <select v-model="task.seconder_user_id">
                     <option v-for="user in users" :value="user.id">
                         @{{ user.name }}
@@ -98,12 +151,12 @@
             </div>
         </div>
 
-         <div class="form-group row" >
-            <label for="name" class="col-md-4 col-form-label text-md-right">
+         <!-- <div class="form-group row" >
+            <label for="name" class="col-md-2 col-form-label text-md-right">
                TaskStatus
             </label>
 
-            <div class="col-md-6">
+            <div class="col-md-8">
                 <select v-model="task.task_Status_id">
                     <option v-for="taskStatus in taskStatuses" :value="taskStatus.id">
                         @{{ taskStatus.status }}
@@ -111,9 +164,9 @@
                 </select>
             </div>
         </div>
-
+ -->
       <div class="form-group row" >
-        <label for="name" class="col-md-4 col-form-label text-md-right"> 
+        <label for="name" class="col-md-2 col-form-label text-md-right"> 
             Please rate
         </label>
            <fieldset class="rating">
@@ -136,8 +189,8 @@
         </div>
 
         <div class="form-group row mb-0">
-            <div class="col-md-6 offset-md-4">
-                <input type="submit" class="btn btn-primary" value="Update" @click="updateTask" />
+            <div class="col-md-8 offset-md-2">
+                <input type="submit" class="btn btn-primary" value="Create" @click="createTask" />
                 <input type="button" class="btn btn-danger" value="Cancel" @click="cancel" />
             </div>
         </div>

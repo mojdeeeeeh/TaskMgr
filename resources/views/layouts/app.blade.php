@@ -1,9 +1,10 @@
 <!DOCTYPE html>
 <html lang="{{ app()->getLocale() }}">
 <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+<!--     <meta name="viewport" content="width=device-width, initial-scale=1"> -->
 
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
@@ -13,6 +14,10 @@
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <link href="{{ asset('css/main.css') }}" rel="stylesheet">
+   <!--  <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <link rel="stylesheet" href="/resources/demos/style.css"> -->
+    <link type="text/css" rel="stylesheet" href="{{ asset('theme/css/persianDatepicker.css') }}" />
+    
     @yield('styles')
 </head>
 <body>
@@ -69,6 +74,12 @@
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}"></script>
+
+    <script src="{{ asset('CKEditor/ckeditor/ckeditor.js')}}"></script>
+    <!-- <script src="{{ asset('theme/bower_components/ckfinder/ckfinder.js') }}"></script> -->
+    <script type="text/javascript" src="{{ asset('theme/js/jquery-1.10.1.min.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('theme/js/persianDatepicker.min.js') }}"></script>  
+  
     @yield('scripts')
 </body>
 </html>
